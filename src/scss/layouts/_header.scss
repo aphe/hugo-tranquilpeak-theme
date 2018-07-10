@@ -65,6 +65,12 @@
                 text-decoration: none;
             }
         }
+
+        .header-title-image {
+            height: map-get($header, height) / 1.5;
+            display: inline-block;
+            vertical-align: middle;
+        }
     }
     // Class used to swipe to the top the header on small screen when the user scroll down
     &.header-up {
