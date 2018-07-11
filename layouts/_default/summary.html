@@ -43,9 +43,9 @@
       {{ .Summary }}
       <p>
         <a href="{{ .Permalink }}" class="postShorten-excerpt_link link">{{ i18n "post.read_more" }}</a>
-        {{ with .Params.readingtime }}
+        {{ if .Site.Params.readingtime }}
           <span class="postShorten-readingtime">
-            {{ printf " - %s min read" . }}
+            {{ printf " - %d min read" .ReadingTime }}
           </span>
         {{ end }}
       </p>
