@@ -47,6 +47,9 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="{{ .Site.Title }}">
     <meta name="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else if .IsPage }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    {{ with .Params.coverImage }}
+      <meta name="twitter:image" content="{{ . | absURL }}">
+    {{ end }}
     {{ with .Site.Author.twitter }}
       <meta name="twitter:creator" content="@{{ . }}">
     {{ end }}
@@ -61,25 +64,28 @@
       {{ end }}
     {{ end }}
 
+    {{ with .Params.coverImage }}
+      <meta property="og:image" content="{{ . | absURL }}">
+    {{ end }}
+
+    {{ with .Params.thumbnailImage }}
+      <meta property="og:image" content="{{ . | absURL }}">
+    {{ end }}
+
     {{ if .Scratch.Get "gravatarEmail" }}
       <meta property="og:image" content="//www.gravatar.com/avatar/{{ (md5 (.Scratch.Get "gravatarEmail")) | urlize }}?s=640">
     {{ else if .Site.Author.picture }}
       <meta property="og:image" content="{{ .Site.Author.picture | absURL }}">
     {{ end }}
 
-    {{ with .Params.thumbnailImage }}
-      <meta property="og:image" content="{{ . | absURL }}">
-    {{ end }}
-    {{ with .Params.coverImage }}
-      <meta property="og:image" content="{{ . | absURL }}">
-    {{ end }}
+
     {{ with .Params.gallery }}
       {{ range . }}
         <meta property="og:image" content="{{ range first 1 (split . " ") }}{{ . | absURL }}{{ end }}">
       {{ end }}
     {{ end }}
 
-    {{ with .Site.Author.googlePlus }}
+    {{ with .Site.Author.gplus }}
       <link rel="publisher" href="https://plus.google.com/{{ . | urlize }}">
     {{ end }}
 
