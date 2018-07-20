@@ -7,8 +7,9 @@ module.exports = function(grunt) {
         startTag: '<!--SCRIPTS-->',
         endTag: '<!--SCRIPTS END-->',
         fileRef: function(filepath) {
-          var tmpl = '<script src="%s"></script>';
-          return util.format(tmpl, filepath.substring(filepath.indexOf("/")));
+          var tmpl = '<script src="{{.Site.BaseURL}}%s"></script>';
+          //replace only the first occurrence of / to avoid double backslash from the BaseURL
+          return util.format(tmpl, filepath.substring(filepath.indexOf("/")).replace("/", ''));
         },
         appRoot: 'src/'
       },
@@ -21,8 +22,8 @@ module.exports = function(grunt) {
         startTag: '<!--STYLES-->',
         endTag: '<!--STYLES END-->',
         fileRef: function(filepath) {
-          var tmpl = '<link rel="stylesheet" href="%s" />';
-          return util.format(tmpl, filepath.substring(filepath.indexOf("/")));
+          var tmpl = '<link rel="stylesheet" href="{{.Site.BaseURL}}%s" />';
+          return util.format(tmpl, filepath.substring(filepath.indexOf("/")).replace("/", ''));
         },
         appRoot: 'src/'
       },
@@ -35,8 +36,8 @@ module.exports = function(grunt) {
         startTag: '<!--SCRIPTS-->',
         endTag: '<!--SCRIPTS END-->',
         fileRef: function(filepath) {
-          var tmpl = '<script src="%s"></script>';
-          return util.format(tmpl, filepath.substring(filepath.indexOf("/")));
+          var tmpl = '<script src="{{.Site.BaseURL}}%s"></script>';
+          return util.format(tmpl, filepath.substring(filepath.indexOf("/")).replace("/", ''));
         },
         appRoot: 'src/'
       },
@@ -49,8 +50,8 @@ module.exports = function(grunt) {
         startTag: '<!--STYLES-->',
         endTag: '<!--STYLES END-->',
         fileRef: function(filepath) {
-          var tmpl = '<link rel="stylesheet" href="%s" />';
-          return util.format(tmpl, filepath.substring(filepath.indexOf("/")));
+          var tmpl = '<link rel="stylesheet" href="{{.Site.BaseURL}}%s" />';
+          return util.format(tmpl, filepath.substring(filepath.indexOf("/")).replace("/", ''));
         },
         appRoot: 'src/'
       },
