@@ -218,6 +218,7 @@ $image-gallery-photos-margin: 2px;
 $main-content: (
     'max-width':          750px,
     'padding-right-left': 20px,
+    'max-percent-width': 80%,
 );
 $main-width: map-get($main-content, max-width) + map-get($main-content, padding-right-left) * 2;
 
