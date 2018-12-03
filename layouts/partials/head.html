@@ -1,36 +1,32 @@
-{{ $.Scratch.Set "isPost" false }}
-{{ if .IsPage }}
-  {{ if eq .Type "post" }}
-    {{ $.Scratch.Set "isPost" true }}
-  {{ end }}
-{{ end }}
-{{ if and (and ($.Scratch.Get "isPost") (lt .Site.Params.sidebarBehavior 3)) (or (and .Site.Params.clearReading (not .Params.clearReading)) .Params.clearReading) }}
-  {{ .Scratch.Set "sidebarBehavior" (add .Site.Params.sidebarBehavior 3) }}
-{{ else }}
-  {{ .Scratch.Set "sidebarBehavior" .Site.Params.sidebarBehavior }}
-{{ end }}
+{{- $.Scratch.Set "isPost" false -}}
+{{- if .IsPage -}}
+  {{- if eq .Type "post" -}}
+    {{- $.Scratch.Set "isPost" true -}}
+  {{- end -}}
+{{- end -}}
+{{- if and (and ($.Scratch.Get "isPost") (lt .Site.Params.sidebarBehavior 3)) (or (and .Site.Params.clearReading (not .Params.clearReading)) .Params.clearReading) -}}
+  {{- .Scratch.Set "sidebarBehavior" (add .Site.Params.sidebarBehavior 3) -}}
+{{- else -}}
+  {{- .Scratch.Set "sidebarBehavior" .Site.Params.sidebarBehavior -}}
+{{- end -}}
 <!-- Fix hugo 0.17 expects ".Site.Author.gravatarEmail" whereas hugo 0.18 expects ".Site.Author.gravataremail" -->
-{{ if .Site.Author.gravatarEmail }}
-  {{ .Scratch.Set "gravatarEmail" .Site.Author.gravatarEmail }}
-{{ end }}
-{{ if .Site.Author.gravataremail }}
-  {{ .Scratch.Set "gravatarEmail" .Site.Author.gravataremail }}
-{{ end }}
-{{ if .Scratch.Get "gravatarEmail" }}
-  {{ .Scratch.Set "authorPicture" (printf "//www.gravatar.com/avatar/%s" (urlize (md5 (.Scratch.Get "gravatarEmail")))) }}
-{{ else if .Site.Author.picture }}
-  {{ .Scratch.Set "authorPicture" (absURL .Site.Author.picture) }}
-{{ end }}
+{{- if .Site.Author.gravatarEmail -}}
+  {{- .Scratch.Set "gravatarEmail" .Site.Author.gravatarEmail -}}
+{{- end -}}
+{{- if .Site.Author.gravataremail -}}
+  {{- .Scratch.Set "gravatarEmail" .Site.Author.gravataremail -}}
+{{- end -}}
+{{- if .Scratch.Get "gravatarEmail" -}}
+  {{- .Scratch.Set "authorPicture" (printf "https://www.gravatar.com/avatar/%s" (urlize (md5 (.Scratch.Get "gravatarEmail")))) -}}
+{{- else if .Site.Author.picture -}}
+  {{- .Scratch.Set "authorPicture" (absURL .Site.Author.picture) -}}
+{{- end -}}
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode }}">
   <head>
     {{ partial "head_start.html" . }}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Hugo {{ .Hugo.Version }} with theme Tranquilpeak 0.4.3-BETA">
+    {{ partial "meta.html" . }}
     <title>{{ with .Title }}{{ . }}{{ else }}{{ .Site.Title }}{{ end }}</title>
-    <meta name="author" content="{{ .Site.Author.name }}">
-    <meta name="keywords" content="{{ with .Keywords }}{{ delimit . ", " }}{{ end }}{{ if .Site.Params.keywords }}, {{ delimit .Site.Params.keywords ", " }}{{ end }}">
 
     {{ with .Site.Params.favicon }} <link rel="icon" href="{{ . | absURL }}"> {{ end }}
     {{ with .RSSLink }}
@@ -88,6 +84,8 @@
     {{ with .Site.Author.gplus }}
       <link rel="publisher" href="https://plus.google.com/{{ . | urlize }}">
     {{ end }}
+
+    <link rel="canonical" href="{{ .Permalink }}">
 
     <!--EXTERNAL STYLES-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
