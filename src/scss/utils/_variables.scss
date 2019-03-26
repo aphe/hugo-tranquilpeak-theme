@@ -2,27 +2,30 @@
 // --------------------------------------------
 
 // Font families
-$open-sans:            'Open Sans';
-$open-sans-sans-serif: 'Open Sans', sans-serif;
-$merriweather-serif:   'Merriweather', serif;
-$menlo:                 Menlo, Consolas, monospace;
+// $open-sans:            'Open Sans';
+// $open-sans-sans-serif: 'Open Sans', sans-serif;
+// $merriweather-serif:   'Merriweather', serif;
+// $menlo:                 Menlo, Consolas, monospace;
+$allerta:              'Allerta Stencil', sans-serif;
+$montserrat:           'Montserrat', sans-serif;
+$roboto:               'Roboto', sans-serif;
 
-$font-family-base: $open-sans-sans-serif;
+$font-family-base: $montserrat;
 
 $font-families: (
    // base
-   'headings':          $open-sans-sans-serif,
+   'headings':          $montserrat,
    // components
-   'code':              $menlo,
-   'caption':           $merriweather-serif,
-   'image-gallery':     $open-sans,
-   'post-header-cover': $merriweather-serif,
-   'post-meta':         $open-sans-sans-serif,
-   'post-content':      $merriweather-serif,
-   'post-excerpt-link': $open-sans-sans-serif,
-   'highlight':         $menlo,
+   'code':              $allerta,
+   'caption':           $roboto,
+   'image-gallery':     $montserrat,
+   'post-header-cover': $roboto,
+   'post-meta':         $montserrat,
+   'post-content':      $roboto,
+   'post-excerpt-link': $montserrat,
+   'highlight':         $allerta,
    // layout
-   'sidebar':           $open-sans-sans-serif
+   'sidebar':           $montserrat
 );
 
 // equal to 15px
